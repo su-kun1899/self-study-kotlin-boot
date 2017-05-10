@@ -1,4 +1,4 @@
-package red.sukun1899
+package red.sukun1899.sskb
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
