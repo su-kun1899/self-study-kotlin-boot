@@ -2,10 +2,7 @@ package red.sukun1899.sskb.controller.page
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import red.sukun1899.sskb.model.Memo
 
 /**
@@ -21,6 +18,16 @@ class MemoController {
                 "author" to "Empty Author"
         )
         val items = listOf<Map<String, Any>>(item)
+        model.addAttribute("items", items)
+
+        return "memo"
+    }
+
+    @GetMapping("param/{memo:[a-zA-Z0-9]+}")
+    fun getParams(@PathVariable memo: String,
+                  @RequestParam(required = false, defaultValue = "Default Author") author: String,
+                  model: Model): String {
+        val items = listOf<Memo>(Memo(memo, author, null))
         model.addAttribute("items", items)
 
         return "memo"
